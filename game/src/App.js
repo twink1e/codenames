@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Client } from 'boardgame.io/react';
+import Board from './Board.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const Codenames = {
+  setup: () => ({ cards: Array.from(Array(25)).map((_, i) => i+1) }),
+
+  moves: {
+    guessAgent: (G, ctx, id) => {
+      G.cards[id] = ctx.currentPlayer;
+    },
+  },
+};
+
+const App = Client({ 
+  game: Codenames,
+  board: Board,
+});
 
 export default App;
