@@ -1,6 +1,7 @@
-import React from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 
-class Board extends React.Component {
+class Board extends Component {
   onClick(id) {
     if (this.isActive(id)) {
       this.props.moves.clickCell(id);
